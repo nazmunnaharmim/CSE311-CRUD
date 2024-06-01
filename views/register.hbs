@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="shortcut icon" href="#">
+  <title>Registration Form</title>
+
+</head>
+
+<body>
+  <div class="container">
+    <h2>Registration Form</h2>
+
+    <form id="registrationForm" action="/auth/register" method="POST">
+      <label for="firstname">First Name:</label>
+      <input type="text" id="firstname" name="firstname" />
+      <div class="error" id="firstnameError"></div>
+
+      <label for="lastname">Last Name:</label>
+      <input type="text" id="lastname" name="lastname" />
+      <div class="error" id="lastnameError"></div>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" class="gender-select" name="gender">
+        <option value="" disabled selected>Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <div class="error" id="genderError"></div>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" />
+      <div class="error" id="dobError"></div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" />
+      <div class="error" id="emailError"></div>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" />
+      <div class="error" id="passwordError"></div>
+
+      <label for="retypepassword">Retype Password:</label>
+      <input type="password" id="retypepassword" name="retypepassword" />
+      <div class="error" id="retypePasswordError"></div>
+
+      <label for="profileimage">Profile Image:</label>
+      <input type="file" id="profileimage" accept="image/*" name="profileimage" />
+      <div class="error" id="profileImageError"></div>
+
+      <button type="submit" class="btn-primary">Register</button>
+
+      <p>Already have an account?&nbsp;<a href="/login">Login</a></p>
+    </form>
+
+    {{#if message }}
+    <h4 class="alert alert-danger mt-4">{{message}}</h4>
+    {{/if}}
+
+  </div>
+
+  <script>
+
+    document.getElementById('registrationForm').addEventListener('submit', function (event) {
+      let valid = true;
+
+      // Clear previous errors
+      document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+      // Validate First Name
+      const firstname = document.getElementById('firstname').value;
+      if (firstname.trim() === '') {
+        document.getElementById('firstnameError').textContent = 'First name is required';
+        valid = false;
+      }
+
+      // Validate Last Name
+      const lastname = document.getElementById('lastname').value;
+      if (lastname.trim() === '') {
+        document.getElementById('lastnameError').textContent = 'Last name is required';
+        valid = false;
+      }
+
+      // Validate Gender
+      const gender = document.getElementById('gender').value;
+      if (gender === '') {
+        document.getElementById('genderError').textContent = 'Gender is required';
+        valid = false;
+      }
+
+      // Validate DoB
+      const dob = document.getElementById('dob').value;
+      if (dob === '') {
+        document.getElementById('dobError').textContent = 'Date of Birth is required';
+        valid = false;
+      }
+
+      // Validate Email
+      const email = document.getElementById('email').value;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById('emailError').textContent = 'Invalid email format';
+        valid = false;
+      }
+
+      // Validate Password
+      const password = document.getElementById('password').value;
+      if (password.trim() === '') {
+        document.getElementById('passwordError').textContent = 'Password is required';
+        valid = false;
+      } else if (password.length < 6) {
+        document.getElementById('passwordError').textContent = 'Password must be at least 6 characters';
+        valid = false;
+      }
+
+      // Validate Retype Password
+      const retypePassword = document.getElementById('retypepassword').value;
+      if (retypePassword !== password) {
+        document.getElementById('retypePasswordError').textContent = 'Passwords do not match';
+        valid = false;
+      }
+
+      // Validate Profile Image
+      const profileImage = document.getElementById('profileimage').files[0];
+      if (!profileImage) {
+        document.getElementById('profileImageError').textContent = 'Profile image is required';
+        valid = false;
+      }
+
+      // Prevent form sub if validation fails
+      if (!valid) {
+        event.preventDefault();
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>

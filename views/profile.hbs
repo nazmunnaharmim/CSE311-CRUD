@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="/style.css">
+  <title>Profile Page</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Profile Page</h2>
+
+    <form id="profileForm">
+      <div class="profile-picture">
+        <img id="profileImage" src="/images/" {{user.photo}}"" alt="Profile Picture" />
+
+      </div>
+      <label for="profileimage">Change Profile Picture:</label>
+      <input type="file" id="profileimage" accept="image/*" disabled />
+
+      <label for="firstname">First Name:</label>
+      <input type="text" id="firstname" value="{{user.first_name}}" disabled placeholder="John" />
+      <label for="lastname">Last Name:</label>
+      <input type="text" id="lastname" value="{{user.last_name}}" disabled placeholder="Doe" />
+
+      <label for="gender">Gender:</label>
+      <input type="text" id="gender" value={{user.gender}} disabled placeholder="null" />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" value="{{user.email}}" disabled placeholder="john.doe@example.com" />
+      <label for="dob">Date of Birth:</label>
+      <input type="text" id="dob" value="{{user.date_of_birth}}" placeholder="1990-01-01" />
+
+      <div class="buttons">
+        <button type="button" id="editButton" class="button">Edit</button>
+        <button type="button" id="deleteButton" class="button">Delete Account</button>
+      </div>
+
+      <button type="button" id="logoutButton" class="button" style="margin-top: 10px;">Logout</button>
+      <input type="submit" id="updateButton" value="Update" class="hidden" />
+    </form>
+  </div>
+
+  <script>
+    const editButton = document.getElementById('editButton');
+    const updateButton = document.getElementById('updateButton');
+    const deleteButton = document.getElementById('deleteButton');
+    const logoutButton = document.getElementById('logoutButton');
+    const profileForm = document.getElementById('profileForm');
+    const inputs = profileForm.querySelectorAll('input[type="text"], input[type="email"], input[type="date"], select, input[type="file"]');
+
+    logoutButton.addEventListener('click', function () {
+      window.location.href = '/auth/logout';
+      //alert('Logged out successfully!');
+
+    });
+
+  </script>
+</body>
+
+</html>

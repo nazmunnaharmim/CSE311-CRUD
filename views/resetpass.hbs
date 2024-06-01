@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="shortcut icon" href="#">
+  <title>Password Change</title>
+
+</head>
+
+<body>
+  <div class="container">
+    <h2>Password Change</h2>
+
+    <form id="passwordChangeForm">
+      <label for="oldpassword">Old Password:</label>
+      <input type="password" id="oldpassword" required />
+
+      <label for="newpassword">New Password:</label>
+      <input type="password" id="newpassword" required />
+
+      <label for="retypenewpassword">Re-type New Password:</label>
+      <input type="password" id="retypenewpassword" required />
+
+      <div class="buttons">
+        <button type="submit" id="proceedButton" class="button">Proceed</button>
+        <button type="button" id="backButton" class="button">Back</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('passwordChangeForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const oldPassword = document.getElementById('oldpassword').value;
+      const newPassword = document.getElementById('newpassword').value;
+      const retypeNewPassword = document.getElementById('retypenewpassword').value;
+
+      // Validate new password length
+      if (newPassword.length < 6) {
+        alert('New password must be at least 6 characters long.');
+        return;
+      }
+
+      // Validate new passwords match
+      if (newPassword !== retypeNewPassword) {
+        alert('New passwords do not match.');
+        return;
+      }
+    });
+
+    document.getElementById('backButton').addEventListener('click', function () {
+      window.location.href = '/login';
+    });
+  </script>
+</body>
+
+</html>
