@@ -2,8 +2,8 @@
 
 ## Tools and Technologies
 
-Frontend: HTML, CSS, JavaScript
-Backend: Node.js, Express.js
-Database: SQL database (MySQL,)
-Authentication: JWT (JSON Web Token) or session-based authentication
-Version Control: Git and GitHub
+- Frontend: HTML, Handlebars, CSS, JavaScript
+- Backend: Node.js, Express.js
+- Database: SQL database (MySQL)
+- Authentication: JWT (JSON Web Token) or session-based authentication
+- Version Control: Git and GitHub
